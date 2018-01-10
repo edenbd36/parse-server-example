@@ -16,10 +16,10 @@ if (!databaseUri) {
 var api = new ParseServer({
   databaseURI: databaseUri || 'mongodb://heroku_hmst4wdx:64vcuh28nt4mhf3213h83t8ro0@ds135866.mlab.com:35866/heroku_hmst4wdx',
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
-  appId: 'findit',
-  masterKey: 'edengalmoti', //Add your master key here. Keep it secret!
+  appId: process.env.APP_ID,
+  masterKey: process.env.MASTER_KEY, //Add your master key here. Keep it secret!
   clientKey: 'edenmotigal',
-  serverURL: 'http://findit-il.herokuapp.com/parse',  // Don't forget to change to https if needed
+  serverURL: process.env.SERVER_URL,  // Don't forget to change to https if needed
   push: {
     android: {
         senderId: '417015896834', // The Sender ID of GCM
