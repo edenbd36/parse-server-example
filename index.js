@@ -7,8 +7,6 @@ var path = require('path');
 
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
-console.log(process.env)
-
 if (!databaseUri) {
   console.log('DATABASE_URI not specified, falling back to localhost.');
 }
@@ -18,7 +16,6 @@ var api = new ParseServer({
   cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
   appId: process.env.APP_ID,
   masterKey: process.env.MASTER_KEY, //Add your master key here. Keep it secret!
-  clientKey: 'edenmotigal',
   serverURL: process.env.SERVER_URL,  // Don't forget to change to https if needed
   push: {
     android: {
