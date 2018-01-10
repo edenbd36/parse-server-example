@@ -4,7 +4,6 @@
 var express = require('express');
 var ParseServer = require('parse-server').ParseServer;
 var path = require('path');
-var ParseDashboard = require('parse-dashboard');
 
 var databaseUri = process.env.DATABASE_URI || process.env.MONGODB_URI;
 
@@ -49,13 +48,6 @@ app.get('/test', function(req, res) {
   res.sendFile(path.join(__dirname, '/public/test.html'));
 });
 
-var options = { allowInsecureHTTP: false };
-
-var dashboard = new ParseDashboard({
-	// Parse Dashboard settings
-}, options);
-
-app.use('/dashboard', dashboard);
 
 var port = process.env.PORT || 1337;
 var httpServer = require('http').createServer(app);
