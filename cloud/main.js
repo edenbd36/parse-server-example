@@ -30,10 +30,11 @@ Parse.Cloud.define("SendPush", function(request) {
   var {user, message} = request.params;
   query.equalTo("user",user);
   console.log ("sending push to " + user);
+  console.log (message);
   // here you can add other conditions e.g. to send a push to sepcific users or channel etc.
 
   var payload = {
-    alert: {message},
+    alert: message,
     title: "New message in Find It"
   };
 
