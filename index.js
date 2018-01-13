@@ -20,7 +20,7 @@ var api = new ParseServer({
   push: {
     android: {
         senderId: '417015896834', // The Sender ID of GCM
-        apiKey: 'AIzaSyB-U6WXWje2hTokIxSyyuy8j-g0MBvaDm4' // The Server API Key of GCM
+        apiKey: 'AIzaSyD1zyTB2L5huIVA6UoYxCV60-j8dJzoxuc' // The Server API Key of GCM
     }
   }
 });
