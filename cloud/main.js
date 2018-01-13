@@ -27,9 +27,9 @@ Parse.Cloud.afterSave("Message", function(request) {
 
 Parse.Cloud.define("SendPush", function(request) {
   var query = new Parse.Query(Parse.Installation);
-  var {user, message} = request.params
-  query.whereEqualTo("user",user)
-
+  var {user, message} = request.params;
+  query.equalTo("user",user);
+  console.log ("sending push to " + user);
   // here you can add other conditions e.g. to send a push to sepcific users or channel etc.
 
   var payload = {
