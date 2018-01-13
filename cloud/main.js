@@ -25,7 +25,7 @@ Parse.Cloud.afterSave("Message", function(request) {
   });
 });
 
-Parse.Cloud.define("SendPush", function(request) {
+Parse.Cloud.define("SendPush", function(request, response) {
   var query = new Parse.Query(Parse.Installation);
   var {user, message} = request.params;
   query.equalTo("user",user);
