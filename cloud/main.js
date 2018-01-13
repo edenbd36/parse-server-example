@@ -40,8 +40,8 @@ Parse.Cloud.define("SendPush", function(request, response) {
 
 
   Parse.Push.send({
-      data: payload,
-      where: query
+     channels: [ request.params.user ],
+      data: payload
     }, {
       useMasterKey: true
     })
