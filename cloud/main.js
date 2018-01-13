@@ -9,12 +9,13 @@ Parse.Cloud.afterSave("Message", function(request) {
   var usersReceived = request.object.get('receiverId');
   var sender = request.object.get('senderName');
   var pushQuery = new Parse.Query(Parse.Installation);
+  var alertMsg = "You have a new message from " + senderName;
   pushQuery.equalTo('user', usersReceived);
   Parse.Push.send({
     where: pushQuery, // Set our Installation query
     data: {
       title: "New message",
-      alert: {"You have a new message from " + senderName}
+      alert: alertMsg
     }
   }, { useMasterKey: true}).then(() => {
       // Push was successful
