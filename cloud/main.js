@@ -10,7 +10,8 @@ Parse.Cloud.define("SendPush", function(request) {
   // here you can add other conditions e.g. to send a push to sepcific users or channel etc.
 
   var payload = {
-    alert: "YOUR_MESSAGE"
+    alert: "YOUR_MESSAGE",
+    title: "Title"
       // you can add other stuff here...
   };
 
