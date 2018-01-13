@@ -3,16 +3,37 @@ Parse.Cloud.define('hello', function(req, res) {
   res.success('Hi');
 });
 
+
+Parse.Cloud.afterSave("Message", function(request) {
+  var messageText = request.object.get('text');
+  var usersReceived = request.object.get('receiverId');
+  var sender = request.object.get('senderName');
+  var pushQuery = new Parse.Query(Parse.Installation);
+  pushQuery.equalTo('user', usersReceived);
+  Parse.Push.send({
+    where: pushQuery, // Set our Installation query
+    data: {
+      title: "New message",
+      alert: {"You have a new message from " + senderName}
+    }
+  }, { useMasterKey: true}).then(() => {
+      // Push was successful
+      console.log('Push sent succecesfully');
+  }, (e) => {
+      console.log(e);
+  });
+});
+
 Parse.Cloud.define("SendPush", function(request) {
   var query = new Parse.Query(Parse.Installation);
-  query.exists("deviceToken");
+  var {user, message} = request.params
+  query.whereEqualTo("user",user)
 
   // here you can add other conditions e.g. to send a push to sepcific users or channel etc.
 
   var payload = {
-    alert: "YOUR_MESSAGE",
-    title: "Title"
-      // you can add other stuff here...
+    alert: {message},
+    title: "New message in Find It"
   };
 
 
