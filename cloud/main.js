@@ -3,9 +3,7 @@ Parse.Cloud.define('hello', function(req, res) {
   res.success('Hi');
 });
 
-Parse.Cloud.afterSave("SendPush", function(request) {
-
-
+Parse.Cloud.define("SendPush", function(request) {
   var query = new Parse.Query(Parse.Installation);
   query.exists("deviceToken");
 
